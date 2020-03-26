@@ -16,7 +16,7 @@
   - name: Replace oracle image
     replace:
       path: "/home/poadocker/bridge/oracle/{{ item }}.yml"
-      regexp: 'poanetwork/tokenbridge-oracle:latest'
+      regexp: 'poanetwork/tokenbridge-oracle:1.2.0'
       replace: "oracle:ultimate-testing"
     with_items:
       - docker-compose

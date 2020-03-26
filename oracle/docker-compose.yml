@@ -32,7 +32,7 @@ services:
   bridge_request:
     cpus: 0.1
     mem_limit: 500m
-    image: poanetwork/tokenbridge-oracle:latest
+    image: poanetwork/tokenbridge-oracle:1.2.0
     env_file: ./.env
     environment: 
       - NODE_ENV=production 
@@ -45,7 +45,7 @@ services:
   bridge_collected:
     cpus: 0.1
     mem_limit: 500m
-    image: poanetwork/tokenbridge-oracle:latest
+    image: poanetwork/tokenbridge-oracle:1.2.0
     env_file: ./.env
     environment: 
       - NODE_ENV=production 
@@ -58,7 +58,7 @@ services:
   bridge_affirmation:
     cpus: 0.1
     mem_limit: 500m
-    image: poanetwork/tokenbridge-oracle:latest
+    image: poanetwork/tokenbridge-oracle:1.2.0
     env_file: ./.env
     environment: 
       - NODE_ENV=production 
@@ -71,7 +71,7 @@ services:
   bridge_senderhome:
     cpus: 0.1
     mem_limit: 500m
-    image: poanetwork/tokenbridge-oracle:latest
+    image: poanetwork/tokenbridge-oracle:1.2.0
     env_file: ./.env
     environment: 
       - NODE_ENV=production 
@@ -84,7 +84,7 @@ services:
   bridge_senderforeign:
     cpus: 0.1
     mem_limit: 500m
-    image: poanetwork/tokenbridge-oracle:latest
+    image: poanetwork/tokenbridge-oracle:1.2.0
     env_file: ./.env
     environment: 
       - NODE_ENV=production 

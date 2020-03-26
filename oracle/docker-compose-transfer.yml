@@ -37,7 +37,7 @@ services:
   bridge_transfer:
     cpus: 0.1
     mem_limit: 500m
-    image: poanetwork/tokenbridge-oracle:latest
+    image: poanetwork/tokenbridge-oracle:1.2.0
     env_file: ./.env
     environment:
       - NODE_ENV=production
