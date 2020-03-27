@@ -94,6 +94,14 @@ services:
     networks:
       - net_db_bridge_senderforeign
       - net_rabbit_bridge_senderforeign
+  gasprice_home:
+    image: poanetwork/gasprice:latest
+    env_file: ./.env
+    environment:
+      - ETH_RPC_URL=${COMMON_HOME_RPC_URL}
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
 
 networks:
   net_db_bridge_request:
