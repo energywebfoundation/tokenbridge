@@ -14,7 +14,7 @@ services:
       - net_rabbit_bridge_senderhome
       - net_rabbit_bridge_senderforeign
     restart: unless-stopped
-    volumes: ['~/bridge_data/rabbitmq:/var/lib/rabbitmq/mnesia']
+    volumes: ['/bridge-data/rabbitmq:/var/lib/rabbitmq/mnesia']
   redis:
     cpus: 0.1
     mem_limit: 500m
@@ -28,7 +28,7 @@ services:
       - net_db_bridge_senderhome
       - net_db_bridge_senderforeign
     restart: unless-stopped
-    volumes: ['~/bridge_data/redis:/data']
+    volumes: ['/bridge-data/redis:/data']
   bridge_request:
     cpus: 0.1
     mem_limit: 500m
@@ -42,6 +42,7 @@ services:
     networks:
       - net_db_bridge_request
       - net_rabbit_bridge_request
+      - net_rpc_external
   bridge_collected:
     cpus: 0.1
     mem_limit: 500m
@@ -55,6 +56,7 @@ services:
     networks:
       - net_db_bridge_collected
       - net_rabbit_bridge_collected
+      - net_rpc_external
   bridge_affirmation:
     cpus: 0.1
     mem_limit: 500m
@@ -68,6 +70,7 @@ services:
     networks:
       - net_db_bridge_affirmation
       - net_rabbit_bridge_affirmation
+      - net_rpc_external
   bridge_senderhome:
     cpus: 0.1
     mem_limit: 500m
@@ -81,6 +84,7 @@ services:
     networks:
       - net_db_bridge_senderhome
       - net_rabbit_bridge_senderhome
+      - net_rpc_external
   bridge_senderforeign:
     cpus: 0.1
     mem_limit: 500m
@@ -94,6 +98,7 @@ services:
     networks:
       - net_db_bridge_senderforeign
       - net_rabbit_bridge_senderforeign
+      - net_rpc_external
   gasprice_home:
     image: poanetwork/gasprice:latest
     env_file: ./.env
@@ -102,6 +107,18 @@ services:
     restart: unless-stopped
     ports:
       - "8000:8000"
+    networks:
+      - net_rpc_external
+  gasprice_foreign:
+    image: poanetwork/gasprice:latest
+    env_file: ./.env
+    environment:
+      - ETH_RPC_URL=${COMMON_FOREIGN_RPC_URL}
+    restart: unless-stopped
+    ports:
+      - "8001:8000"
+    networks:
+      - net_rpc_external
 
 networks:
   net_db_bridge_request:
@@ -124,3 +141,6 @@ networks:
     driver: bridge
   net_rabbit_bridge_senderforeign:
     driver: bridge
+  net_rpc_external:
+    external:
+      name: bridge-common-network

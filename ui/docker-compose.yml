@@ -12,3 +12,9 @@ services:
       - NODE_ENV=production
     restart: unless-stopped
     entrypoint: yarn start
+    networks:
+      - net_rpc_external
+networks:
+  net_rpc_external:
+    external:
+      name: bridge-common-network

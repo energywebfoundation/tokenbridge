@@ -1,13 +1,14 @@
 ---
-- name: Install the gpg key for docker
-  apt_key:
-    url: "https://download.docker.com/linux/ubuntu/gpg"
-    state: present
+# - name: Install the gpg key for docker
+#   apt_key:
+#     url: "https://download.docker.com/linux/ubuntu/gpg"
+#     state: present
 
-- name: Install the docker repos
-  apt_repository:
-    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
-    state: present
+# We do not need this now - we installed it during rpc preparation
+# - name: Install the docker repos
+#   apt_repository:
+#     repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+#     state: present
 
 - name: Install apt dependencies
   apt:
@@ -18,25 +19,29 @@
     - ca-certificates
     - curl
     - software-properties-common
-    - docker-ce
+    # We do not need this now - we installed it during rpc preparation
+    # - docker-ce
     - git
     - python3
     - python3-pip
 
-- name: Install Docker Compose
-  get_url:
-    url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64"
-    dest: "/usr/local/bin/docker-compose"
-    force: True
-    owner: "root"
-    group: "root"
-    mode: "0755"
+# - name: Install Docker Compose
+#   get_url:
+#     url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64"
+#     dest: "/usr/local/bin/docker-compose"
+#     force: True
+#     owner: "root"
+#     group: "root"
+#     mode: "0755"
 
 - name: Upgrade pip version
   shell: pip3 install --upgrade pip
 
 - name: Install python docker library
-  shell: pip3 install docker docker-compose setuptools
+  shell: pip3 install docker setuptools
+
+# - name: Install python docker lib
+#   shell: pip install docker
 
 - name: Add user to run docker-compose
   user:
@@ -73,3 +78,6 @@
     group: root
     mode: 0640
   notify: restart docker
+
+- name: Add common docker network for communication between containers
+  shell: docker network create -d bridge bridge-common-network || true
