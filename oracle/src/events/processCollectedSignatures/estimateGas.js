@@ -44,6 +44,12 @@ async function estimateGas({ foreignBridge, validatorContract, message, numberOf
       }
     }
 
+    logger.error('Unrecognized error')
+    logger.error("message", message)
+    logger.error("numberOfCollectedSignatures", numberOfCollectedSignatures)
+    logger.error("v", v)
+    logger.error("r", r)
+    logger.error("s", s)
     throw new Error('Unknown error while processing message')
   }
 }
