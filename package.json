@@ -32,6 +32,13 @@
     "monitor-e2e",
     "contracts"
   ],
+  "resolutions": {
+    "mocha": "^7.2.0",
+    "secp256k1": "^3.8.0",
+    "keccak":"^2.1.0",
+    "ethereumjs-util":"^6.2.1",
+    "@babel/core":"^7.0.0-0"
+  },  
   "scripts": {
     "initialize": "yarn clean && git submodule update --init && yarn install --unsafe-perm --frozen-lockfile && yarn install:deploy && yarn compile:contracts",
     "build": "yarn workspace ui run build",
