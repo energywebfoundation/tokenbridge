@@ -5,7 +5,6 @@
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.4.0",
     "bignumber.js": "^6.0.0",
-    "coveralls": "^3.0.0",
     "customize-cra": "^0.2.12",
     "dotenv": "^7.0.0",
     "fs-extra": "^5.0.0",
@@ -15,16 +14,16 @@
     "numeral": "^2.0.6",
     "react": "^16.2.0",
     "react-app-rewire-mobx": "^1.0.7",
-    "react-app-rewired": "^2.0.3",
     "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.2.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "3.0.1",
     "react-transition-group": "^2.2.1",
     "sweetalert": "^2.1.0",
     "web3": "1.0.0-beta.30",
-    "web3-utils": "1.0.0-beta.30"
+    "web3-utils": "1.0.0-beta.30",
+    "react-scripts": "3.0.1",
+    "react-app-rewired": "^2.0.3"
   },
   "scripts": {
     "lint": "eslint . --ignore-path ../.eslintignore",
@@ -44,7 +43,8 @@
     "babel-eslint": "^10.0.1",
     "jest-dom": "^3.0.1",
     "nodemon": "^1.18.11",
-    "react-testing-library": "^5.4.4"
+    "react-testing-library": "^5.4.4",
+    "coveralls": "^3.0.0"
   },
   "browserslist": [
     ">0.2%",
